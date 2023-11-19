@@ -1,5 +1,27 @@
+#include <iostream>
+
 int main()
 {
+	double array[10];
+
+	for (int i{0}; i < 10; ++i)
+		array[i] = i;
+
+	for (int i{0}; i < 10; ++i)
+		std::cout << "адрес &array[" << i << "] = " << &(array[i]) << ", значение = " << array[i] << std::endl;
+
+	std::cout << "====================\n";
+
+	double *pivot{&(array[5])};
+	int left_steps{&(array[5]) - &(array[0])};
+	int right_steps{&(array[10]) - &(array[5])};
+
+	for (int j{left_steps}; j > 0; --j)
+		std::cout << "адрес &array[" << left_steps - j << "] = " << pivot - j << ", значение = " << ++(*(pivot - j)) << std::endl;
+
+	for (int n{0}; n < right_steps; ++n)
+		std::cout << "адрес &array[" << n << "] = " << pivot + n << ", значение = " << ++(*(pivot + n)) << std::endl;
+
 	//! создать массив размера от 4 до 10 элементов с типом int (или double)
 	//! вывести адресс и значение каждого элемента массива (прим. "адрес arr[1] = 0х12A21ABCE, значение = 8" )
 

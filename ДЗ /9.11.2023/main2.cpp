@@ -1,5 +1,15 @@
+#include <iostream>
 
 
+void printer(char ch, int height)
+{
+	for (int i{0}; i < height; ++i)
+	{
+		for (int j{-1}; j < i; ++j)
+			std::cout << ch;
+		std::cout << '\n';
+	}
+}
 int main()
 {
 	//! создать функцию void printer(char ch, int height)
@@ -10,4 +20,6 @@ int main()
 	//! &&
 	//! &&&
 	//! &&&&
+	printer('+', 5);
+	printer('&', 20);
 }

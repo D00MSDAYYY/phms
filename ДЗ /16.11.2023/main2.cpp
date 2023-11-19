@@ -60,42 +60,44 @@ int main()
 	for (NODE::node *i{&head}; i != &tail; i = i->next_node)
 		std::cerr << i->id << std::endl;
 
-	int array_size{&(nodes[0]) - &(nodes[15])};
+	int array_size{&(nodes[15]) - &(nodes[0])};
 	int interval{array_size / 3};
 
+	NODE::node head1{0, nullptr};
+	NODE::chaining(&head1, head.next_node);
+	NODE::unchaining(&head, head.next_node);
 
-доделаю позже
-	// NODE::node head1{0, nullptr};
-	// NODE::chaining(&head1, head.next_node);
+	NODE::node *end_of_1_chain{&head1};
 
-	// NODE::node *end_of_1_chain{&head1};
-	// for (int i{0}; i < interval; ++i)
-	// 	end_of_1_chain = end_of_1_chain->next_node;
+	for (int i{0}; i < interval; ++i)
+		end_of_1_chain = end_of_1_chain->next_node;
 
-	// NODE::node head2{0, nullptr};
+	NODE::node head2{0, nullptr};
 
-	// NODE::chaining(&head2, end_of_1_chain);
-	// NODE::unchaining(end_of_1_chain, end_of_1_chain->next_node);
-	// NODE::unchaining(end_of_1_chain, &tail);
+	NODE::chaining(&head2, end_of_1_chain->next_node);
+	NODE::unchaining(end_of_1_chain, end_of_1_chain->next_node);
+	NODE::chaining(end_of_1_chain, &tail);
 
-	// NODE::node *end_of_2_chain{&head2};
-	// for (int i{0}; i < interval; ++i)
-	// 	end_of_2_chain = end_of_2_chain->next_node;
+	std::cout << "--------------------------------\n";
+	for (NODE::node *i{head1.next_node}; i != &tail; i = i->next_node)
+		std::cerr << i->id << std::endl;
 
-	// NODE::node head3{0, nullptr};
-	// NODE::chaining(&head3, end_of_2_chain->next_node);
+	NODE::node *end_of_2_chain{&head2};
+	for (int i{0}; i < interval; ++i)
+		end_of_2_chain = end_of_2_chain->next_node;
 
+	NODE::node head3{0, nullptr};
+	NODE::chaining(&head3, end_of_2_chain->next_node);
+	NODE::unchaining(end_of_2_chain, end_of_2_chain->next_node);
+	NODE::chaining(end_of_2_chain, &tail);
 
-	// std::cout << "--------------------------------\n";
-	// for (NODE::node *i{&head1}; i != &tail; i = i->next_node)
-	// 	std::cerr << i->id << std::endl;
-	// std::cout << "--------------------------------\n";
-	// for (NODE::node *i{&head2}; i != &tail; i = i->next_node)
-	// 	std::cerr << i->id << std::endl;
-	// std::cout << "--------------------------------\n";
-	// for (NODE::node *i{&head3}; i != &tail; i = i->next_node)
-	// 	std::cerr << i->id << std::endl;
-	// std::cout << "--------------------------------\n";
+	std::cout << "--------------------------------\n";
+	for (NODE::node *i{head2.next_node}; i != &tail; i = i->next_node)
+		std::cerr << i->id << std::endl;
+	std::cout << "--------------------------------\n";
+	for (NODE::node *i{head3.next_node}; i != &tail; i = i->next_node)
+		std::cerr << i->id << std::endl;
+	std::cout << "--------------------------------\n";
 
 	//! в пространстве имен NODE :
 	//! объявить и определить структуру node, которая содержит две переменные :
